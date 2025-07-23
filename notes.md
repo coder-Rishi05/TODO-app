@@ -79,6 +79,7 @@ app.get('/api/notes',(req,res)=>{
 it will display the message at : loccalhost:5000/api/notes
 
 ```
+---
 
 ### How full stack app work
 
@@ -86,11 +87,77 @@ it will display the message at : loccalhost:5000/api/notes
 client send request to the serever. The backend will perform action and send response, which will either fail or sucessfull.
 
 ```
+---
 
 ### API : Application Programming Interface
 
 ```
 It allow 2 diffrent apps to talk to each other. 
 
+
+```
+--- 
+### Types of API
+
+```
+1. Rest Api : 
+
+Methods :
+    GET : Get some request.
+    POST  : create a post.
+    PUT : Update a post.
+    DELETE : Delete a post
+
+
+app.get(route, (req, res) => {
+  // send the notes
+  res.send("you got 5 notes !");
+});
+
+
+
+app.post('/api/notes/create', (req, res) => {
+   // create a new note
+   res.send("note created successfully!");
+ });
+ app.put("/api/notes/update", (req, res) => {
+   // update an existing note
+   res.send("note updated successfully!");
+ });
+ app.delete("/api/notes/delete", (req, res) => {
+   // delete an existing note
+   res.send("note deleted  successfully!");
+ });
+
+```
+---
+
+### HTTP Status code :
+
+```
+    1. 100 : Informational error
+    2. 200 : 200 Success
+                200 ok : everything right.
+                201 created : new resource sucessfully created. (after post request)
+    3. 300 : Redirecting 
+                300 : tell the client that the thing he is looking for is moved to another server.
+                301 : it means the site url has changed.
+    4. 400 : This happens when problem is user side.
+
+                400 : Bad request : invalid request 
+                401 : Unauthorised: must log in.
+                403 : Forbidden : not allowd to acess.
+                403 : Not found : the url not exist.
+                429 : Too many request : 
+
+    5. 500 : Server error : When something wrong on the server side even client made a valid request.
+
+                500 : Internal server error. : Something broke on the server. 
+                503 :  Service unavailable :  Server is temprorily overload or down.
+
+
+
+
+ 
 
 ```
