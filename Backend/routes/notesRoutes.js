@@ -1,15 +1,18 @@
-import express from "express";
-import notesRoutes from './routes/notesRoutes.js'
+import express from 'express'
 
-const app = express();
+const router = express.Router();
 
+router.get("/",(req, res) => {
+  // send the notes
+  res.status(200).send("You pathched the notes.");
+})
 
-app.use("/api/notes",notesRoutes)
+export default router;
 
-const route = "/api/notes/send";
+// const route = "/api/notes/send";
 // app.get(route, (req, res) => {
 //   // send the notes
-//   res.send("you got 15 notes.");
+//   res.status(200).send("you got 15 notes.");
 // });
 
 // app.post(route, (req, res) => {
@@ -23,10 +26,3 @@ const route = "/api/notes/send";
 // app.delete(route + "/:id", (req, res) => {
 //   res.status(200).json({ message: "note deleted successfully." });
 // });
-
-const port = 5000;
-
-app.listen(port, () => {
-  console.log("listning on port : ", port);
-  console.log("http://localhost:5000" + route);
-});
