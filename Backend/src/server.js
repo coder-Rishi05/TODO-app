@@ -1,12 +1,14 @@
 import express from "express";
-import notesRoutes from './routes/notesRoutes.js'
+import notesRoutes from "./src/controllers/routes/notesRoutes.js";
 
 const app = express();
 
+app.use("/api/notes", notesRoutes);
+// app.use("/api/notes/post",notesRoutes)
+// app.use("/api/notes/update",notesRoutes)
+// app.use("/api/notes/delete",notesRoutes)
 
-app.use("/api/notes",notesRoutes)
-
-const route = "/api/notes/send";
+// const route = "/api/notes/send";
 
 // app.get(route, (req, res) => {
 //   // send the notes
@@ -29,5 +31,5 @@ const port = 5000;
 
 app.listen(port, () => {
   console.log("listning on port : ", port);
-  console.log("http://localhost:5000" );
+  console.log("http://localhost:5000");
 });
