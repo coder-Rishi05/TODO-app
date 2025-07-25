@@ -7,6 +7,7 @@ const app = express();
 app.use("/api/notes",notesRoutes)
 
 const route = "/api/notes/send";
+
 // app.get(route, (req, res) => {
 //   // send the notes
 //   res.send("you got 15 notes.");
@@ -28,5 +29,5 @@ const port = 5000;
 
 app.listen(port, () => {
   console.log("listning on port : ", port);
-  console.log("http://localhost:5000" + route);
+  console.log("http://localhost:5000" );
 });
