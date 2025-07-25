@@ -267,7 +267,7 @@ ex:
 
   app.use("/api/notes",notesRoutes)
 
-  
+
   const port = 5000;
 
   app.listen(port, () => {
@@ -280,9 +280,61 @@ ex:
 
 ### controllers
 
-As the notesRoutes function can be cvery huge so we can use something called controller.
+```
+
+As the notesRoutes function can be very huge so we can use something called controller.
+
+create folder/contoller/filecontoller.js
+
+
+    export const getAllNotes = async (req, res) => {
+      // send the notes
+      res.status(200).send("You fetched the notes.");
+    }
+
+    export const createNotes = async (req,res)=>{
+        res.status(201).json({ message: "notes created successfully." });
+        console.log(res);
+    }
+    export const updateNotes = async(req, res) => {
+      res.status(200).json({ message: "notes updated successfully." });
+    }
+    export const deleteNotes = async (req, res) => {
+      res.status(200).json({ message: "notes deleted successfully." });
+    }
+
+inside notesRoute.js
+
+      import express from "express";
+    import {
+      createNotes,
+      deleteNotes,
+      getAllNotes,
+      updateNotes,
+    } from "../controllers/notesController.js";
+
+    const router = express.Router();
+
+    router.get("/", getAllNotes);
+
+    router.post("/post", createNotes);
+
+    router.put("/:id", updateNotes);
+
+    router.delete("/:id", deleteNotes);
+
+    export default router;
 
 
 ```
 
+### optimizing app src folder
+
+```
+
+create a src folder
+
+move controller, route and server.js inside it.
+
+also make changes to the package.json in path as /server.js to src/server.js
 ```
