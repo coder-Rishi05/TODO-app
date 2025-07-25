@@ -277,6 +277,7 @@ ex:
 
 
 ```
+--- 
 
 ### controllers
 
@@ -327,6 +328,7 @@ inside notesRoute.js
 
 
 ```
+---
 
 ### optimizing app src folder
 
@@ -338,3 +340,4 @@ move controller, route and server.js inside it.
 
 also make changes to the package.json in path as /server.js to src/server.js
 ```
+---
