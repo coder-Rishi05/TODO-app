@@ -1,5 +1,5 @@
 import express from "express";
-import notesRoutes from "./src/controllers/routes/notesRoutes.js";
+import notesRoutes from "./routes/notesRoutes.js";
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use("/api/notes", notesRoutes);
 //   res.status(200).json({ message: "note deleted successfully." });
 // });
 
-const port = 5000;
+const port = 1234;
 
 app.listen(port, () => {
   console.log("listning on port : ", port);
