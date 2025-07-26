@@ -1,0 +1,1 @@
+export const MogoDB_CONNECT = "mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"

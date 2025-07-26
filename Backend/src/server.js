@@ -1,7 +1,10 @@
 import express from "express";
 import notesRoutes from "./routes/notesRoutes.js";
+import { connectDB } from "../config/db.js";
 
 const app = express();
+
+connectDB()
 
 app.use("/api/notes", notesRoutes);
 // app.use("/api/notes/post",notesRoutes)
@@ -33,3 +36,4 @@ app.listen(port, () => {
   console.log("listning on port : ", port);
   console.log("http://localhost:5000");
 });
+

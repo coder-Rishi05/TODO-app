@@ -432,3 +432,47 @@ app.listen(port, () => {
     npm run dev
 
 --- 
+
+
+### Setting up database.
+
+password  : JqTctOxqUWQRBuJl
+
+Steps : 
+
+1. Go to mongodb atlas.
+2. create an account.
+3. create a new project.
+4. setup atlas.
+5. go to netwoek access.
+6. add ip address from anywhere.
+7. connect to database.
+8. install specific version -> npm install mongoose@7.0.3
+9. create a new folder in backend config.
+10. under it create a file db.js.
+
+--- 
+### code to connect to mongodb
+
+```
+db.js
+import mongoose from "mongoose";
+
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    );
+    console.log("Mongoose connected successfully.");
+  } catch (error) {
+    console.log("failed to connect to Mongoose : ", error);
+  }
+};
+
+server.js
+
+import mongoose from "mongoose";
+
+connectDB();
+
+```
