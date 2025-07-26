@@ -341,3 +341,94 @@ move controller, route and server.js inside it.
 also make changes to the package.json in path as /server.js to src/server.js
 ```
 ---
+
+## 🛠️ Debugging: `Cannot find module '/src/server.js'` in Node.js
+
+This project encountered an error while trying to run a Node.js backend using `nodemon`. This README explains the **issue**, **cause**, and **solution** to help future debugging.
+
+---
+
+## ❌ Problem
+
+While running the project using:
+
+```bash
+npm run dev
+
+The following error occurred:
+```
+```
+Error: Cannot find module 'D:\src\server.js'
+```
+--- 
+# 📌Root Cause
+
+1. Incorrect paths in package.json:
+
+"dev": "nodemon /src/server.js",
+"start": "node /src/server.js"
+
+The / at the beginning made Node.js search for the file at:
+
+D:/src/server.js
+
+instead of the correct path inside the project folder.
+
+2. Incorrect import path in server.js:
+
+```
+import notesRoutes from "/src/routes/notesRoutes.js";
+
+Again, /src/... was treated as an absolute path and Node tried to find it at the root of the system (D:/), not inside the project folder.
+
+```
+---
+
+# ✅ Solution
+
+```
+Updated package.json:
+{
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  }
+}
+
+Fixed server.js:
+
+import express from "express";
+import notesRoutes from "./routes/notesRoutes.js";
+
+const app = express();
+const port = 5000;
+
+app.use("/api/notes", notesRoutes);
+
+app.listen(port, () => {
+  console.log("listening on port:", port);
+});
+
+1. Replaced /src/... with ./routes/... to make it relative to the current file.
+ 
+2. Retained "type": "module" in package.json to use ES module syntax (import/export).
+
+
+```
+
+## 💡 Key Takeaways.
+
+    In Node.js (with "type": "module"), absolute paths starting with / do not work unless you're pointing to the system root.
+
+    Always use relative paths (./) when importing local files.
+
+    Don't forget to include the full filename with extension (e.g., .js) when using ES Modules.
+
+    nodemon and node will follow the exact path you give — no guesses.
+
+    ✅ Now the command works:
+
+    npm run dev
+
+--- 
