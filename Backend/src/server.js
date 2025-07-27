@@ -11,7 +11,7 @@ connectDB();
 
 app.use("/api/notes", notesRoutes);
 
-console.log(process.env.MONGO_URL); // it will give undefined.
+// console.log(process.env.MONGO_URL);  it will give undefined.
 
 // app.use("/api/notes/post",notesRoutes)
 // app.use("/api/notes/update",notesRoutes)
@@ -36,9 +36,9 @@ console.log(process.env.MONGO_URL); // it will give undefined.
 //   res.status(200).json({ message: "note deleted successfully." });
 // });
 
-const port = 1234;
+const PORT = process.env.PORT || 1234;
 
-app.listen(port, () => {
-  console.log("listning on port : ", port);
+app.listen(PORT, () => {
+  console.log("listning on PORT : ", PORT);
   console.log("http://localhost:5000");
 });
