@@ -476,3 +476,21 @@ import mongoose from "mongoose";
 connectDB();
 
 ```
+
+### setting up database. 
+
+ "mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  this is called test. without database name.
+ in this url i will place my databse name as : notes_db
+
+  "mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/notes_db?retryWrites=true&w=majority&appName=Cluster0"
+
+  we will put the url to .env file. not on the code page as anyobe can acess it.
+
+  ex: .env file
+
+    MONGO_URL =  mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/notes_db?retryWrites=true&w=majority&appName=Cluster0
+
+    we will not put any qotes "" here.
+
+### installing package dotenv.
