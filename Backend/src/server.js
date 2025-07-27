@@ -1,12 +1,18 @@
 import express from "express";
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "../config/db.js";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express();
 
-connectDB()
+connectDB();
 
 app.use("/api/notes", notesRoutes);
+
+console.log(process.env.MONGO_URL); // it will give undefined.
+
 // app.use("/api/notes/post",notesRoutes)
 // app.use("/api/notes/update",notesRoutes)
 // app.use("/api/notes/delete",notesRoutes)
@@ -36,4 +42,3 @@ app.listen(port, () => {
   console.log("listning on port : ", port);
   console.log("http://localhost:5000");
 });
-
