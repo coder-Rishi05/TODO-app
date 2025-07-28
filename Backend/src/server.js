@@ -9,6 +9,9 @@ const app = express();
 
 connectDB();
 
+// middleware
+app.use(express.json())
+
 app.use("/api/notes", notesRoutes);
 
 // console.log(process.env.MONGO_URL);  it will give undefined.
@@ -40,5 +43,5 @@ const PORT = process.env.PORT || 1234;
 
 app.listen(PORT, () => {
   console.log("listning on PORT : ", PORT);
-  console.log("http://localhost:5000");
+  console.log("http://localhost:"+PORT);
 });
