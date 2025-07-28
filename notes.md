@@ -494,3 +494,19 @@ connectDB();
     we will not put any qotes "" here.
 
 ### installing package dotenv.
+
+This package allow us to use .env variable.
+
+on server.js
+        |
+        - console.log(process.env.MONGO_URL); // it will give undefined.
+        | - to fix it we need to use dotenv package.
+        
+```
+import dotenv from "dotenv"
+
+dotenv.config()
+
+console.log(process.env.MONGO_URL); 
+```
+now it will give the varible url we want ot acess.
