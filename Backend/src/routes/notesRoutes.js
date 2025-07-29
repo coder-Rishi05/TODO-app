@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/", getAllNotes);
 
-router.post("/post", createNotes);
+router.post("/", createNotes);
 
 router.put("/:id", updateNotes);
 

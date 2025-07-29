@@ -541,3 +541,5 @@ const Note = mongoose.model("Note", noteSchema); // create a note model based on
 export default Note; // we will use this Note in other files to interact with the nodes. create , update and delete.
 
 ```
+
+# middleware and controllers.

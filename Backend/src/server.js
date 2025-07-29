@@ -10,7 +10,7 @@ const app = express();
 connectDB();
 
 // middleware
-app.use(express.json())
+app.use(express.json()) // to parse JSON data from the request body so we can acess it in req.body in controllers.
 
 app.use("/api/notes", notesRoutes);
 
