@@ -277,7 +277,8 @@ ex:
 
 
 ```
---- 
+
+---
 
 ### controllers
 
@@ -328,6 +329,7 @@ inside notesRoute.js
 
 
 ```
+
 ---
 
 ### optimizing app src folder
@@ -340,6 +342,7 @@ move controller, route and server.js inside it.
 
 also make changes to the package.json in path as /server.js to src/server.js
 ```
+
 ---
 
 ## 🛠️ Debugging: `Cannot find module '/src/server.js'` in Node.js
@@ -357,10 +360,13 @@ npm run dev
 
 The following error occurred:
 ```
+
 ```
 Error: Cannot find module 'D:\src\server.js'
 ```
---- 
+
+---
+
 # 📌Root Cause
 
 1. Incorrect paths in package.json:
@@ -382,6 +388,7 @@ import notesRoutes from "/src/routes/notesRoutes.js";
 Again, /src/... was treated as an absolute path and Node tried to find it at the root of the system (D:/), not inside the project folder.
 
 ```
+
 ---
 
 # ✅ Solution
@@ -411,7 +418,7 @@ app.listen(port, () => {
 });
 
 1. Replaced /src/... with ./routes/... to make it relative to the current file.
- 
+
 2. Retained "type": "module" in package.json to use ES module syntax (import/export).
 
 
@@ -431,14 +438,13 @@ app.listen(port, () => {
 
     npm run dev
 
---- 
-
+---
 
 ### Setting up database.
 
-password  : JqTctOxqUWQRBuJl
+password : JqTctOxqUWQRBuJl
 
-Steps : 
+Steps :
 
 1. Go to mongodb atlas.
 2. create an account.
@@ -451,7 +457,8 @@ Steps :
 9. create a new folder in backend config.
 10. under it create a file db.js.
 
---- 
+---
+
 ### code to connect to mongodb
 
 ```
@@ -477,17 +484,17 @@ connectDB();
 
 ```
 
-### setting up database. 
+### setting up database.
 
- "mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  this is called test. without database name.
- in this url i will place my databse name as : notes_db
+"mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+this is called test. without database name.
+in this url i will place my databse name as : notes_db
 
-  "mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/notes_db?retryWrites=true&w=majority&appName=Cluster0"
+"mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/notes_db?retryWrites=true&w=majority&appName=Cluster0"
 
-  we will put the url to .env file. not on the code page as anyobe can acess it.
+we will put the url to .env file. not on the code page as anyobe can acess it.
 
-  ex: .env file
+ex: .env file
 
     MONGO_URL =  mongodb+srv://rishabhrawat1800:JqTctOxqUWQRBuJl@cluster0.weiqwnm.mongodb.net/notes_db?retryWrites=true&w=majority&appName=Cluster0
 
@@ -498,22 +505,23 @@ connectDB();
 This package allow us to use .env variable.
 
 on server.js
-        |
-        - console.log(process.env.MONGO_URL); // it will give undefined.
-        | - to fix it we need to use dotenv package.
-        
+| - console.log(process.env.MONGO_URL); // it will give undefined.
+| - to fix it we need to use dotenv package.
+
 ```
 import dotenv from "dotenv"
 
 dotenv.config()
 
-console.log(process.env.MONGO_URL); 
+console.log(process.env.MONGO_URL);
 ```
+
 now it will give the varible url we want to acess.
 
 ### Model creation
 
 creating Models folder on backend and Notes.js file where we will create a schema and model for the mongodb server and content to upload.
+
 ```
 import mongoose from "mongoose";
 
@@ -542,4 +550,147 @@ export default Note; // we will use this Note in other files to interact with th
 
 ```
 
-# middleware and controllers.
+### controllers
+
+```
+we will send request on our notes after setting up in the mongoDB.
+ex :
+export const getAllNotes = async (req, res) => {
+
+  try {
+    const notes = await Note.find();
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(500).json("internal server error", error);
+  }
+};
+
+it will provide empty json array.
+
+adding data to the database.
+  // create a note and save it in the database.
+
+export const createNotes = async (req, res) => {
+  // console.log(req.body); // it will give the data in the request body.
+  try {
+    const { title, content } = req.body;
+    const note = new Note({ content, title });
+    const savedNote = await note.save();
+    res.status(201).json(savedNote);
+    console.log({ title, content }); // we cant use it directly.
+  } catch (error) {
+    console.log("error in creating note controller ", error);
+    res.status(500).json({ message: "internal server error", error });
+  }
+};
+
+
+// create a note and save it in the database.
+
+export const createNotes = async (req, res) => {
+  // console.log(req.body); // it will give the data in the request body.
+  try {
+    const { title, content } = req.body;
+    const note = new Note({ content, title });
+    const savedNote = await note.save();
+    // res.status(201).json({message : "note created successfully."});
+    res.status(201).json(savedNote);
+    console.log({ title, content }); // we cant use it directly.
+  } catch (error) {
+    console.log("error in creating note controller ", error);
+    res.status(500).json({ message: "internal server error", error });
+  }
+};
+<!-- updating a note -->
+
+export const updateNotes = async (req, res) => {
+  try {
+    const { title, content } = req.body;
+   const updateNote = await Note.findByIdAndUpdate(req.params.id, { title, content });
+    if(!updateNote) return res.status(404).json({message:"Note not found"},{new:true}); // handling if note not found. The new:true will give a new note with updated values.
+    res.status(200).json({ message: "notes updated successfully." });
+  } catch (err) {
+    console.log("error in updating note controller ", err);
+    res.status(500).json({ message: "internal server error", error: err });
+  }
+};
+
+
+
+```
+
+```
+import Note from "../../models/Notes.js";
+
+export const getAllNotes = async (req, res) => {
+  // send the notes written in the database.
+  try {
+    const notes = await Note.find().sort({ createdAT: -1 });
+
+    res.status(200).json(notes);
+    // res.status(200).send("You fetched the notes.");
+  } catch (error) {
+    console.log("error in getting data controller ", error);
+    res.status(500).json("internal server error", error);
+  }
+};
+
+export async function getNoteById(req, res) {
+  try {
+    const note = await Note.findById(req.params.id);
+    if (!note) return res.status(404).message("Note not found ! ");
+    res.json(note);
+  } catch (err) {
+    console.log("error in getting data controller ", err);
+    res.status(500).json("internal server error", err);
+  }
+}
+
+export const createNotes = async (req, res) => {
+  // create a note and save it in the database.
+  // console.log(req.body); // it will give the data in the request body.
+  try {
+    const { title, content } = req.body;
+    const note = new Note({ content, title });
+    const savedNote = await note.save();
+    // res.status(201).json({message : "note created successfully."});
+    res.status(201).json(savedNote);
+    console.log({ title, content }); // we cant use it directly.
+  } catch (error) {
+    console.log("error in creating note controller ", error);
+    res.status(500).json({ message: "internal server error", error });
+  }
+};
+
+export const updateNotes = async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const updatedNote = await Note.findByIdAndUpdate(req.params.id, {
+      title,
+      content,
+    });
+    if (!updatedNote)
+      return res.status(404).json({ message: "Note not found" }, { new: true });
+    res.status(200).json(updatedNote);
+  } catch (err) {
+    console.log("error in updating note controller ", err);
+    res.status(500).json({ message: "internal server error", error: err });
+  }
+};
+
+export const deleteNotes = async (req, res) => {
+  try {
+    const deleteNote = await Note.findByIdAndDelete(req.params.id);
+    if (!deleteNote) return res.status(404).json({ message: "Note not found" });
+    // res.status(200).json(deleteNote);
+    res.status(200).res.json({ message: "notes deleted successfully." });
+  } catch (err) {
+    console.log("error in deleteNote controller", err);
+    res.status(500).json({ message: "Internal server error " });
+  }
+};
+
+
+```
+
+# middleware and rate limiting.
