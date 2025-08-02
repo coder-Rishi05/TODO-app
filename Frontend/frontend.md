@@ -133,4 +133,24 @@ diffrent message for diffrent cases.
           themes:["light","dark","forest"]
         }
       }
-    ```
+
+to use theme we can simply write 
+```
+```
+return (
+  <div data-theme = "forest" > // to use forest theme
+  </div>
+)
+```
+
+
+### Installing  lucide-react for icons.
+
+```
+to install - 
+
+ npm i lucide-react
+```
+
+### installing axios for api calling.
+
