@@ -7,13 +7,12 @@ import toast, { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
-    <div>
-      <button
-        onClick={() => toast.error("congrats")}
-        className="text-sm px-3 py-2 bg-pink-300 m-3 rounded   "
-      >
-        Click me
-      </button>
+    <div data-theme="forest">
+      <button className="btn btn-outline">click me</button>
+      <button className="btn btn-outline btn-info">Info</button>
+      <button className="btn btn-outline btn-success">Success</button>
+      <button className="btn btn-outline btn-warning">Warning</button>
+      <button className="btn btn-outline btn-error">Error</button>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/create" element={<CreatePage />} />

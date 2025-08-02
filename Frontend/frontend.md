@@ -94,4 +94,43 @@ toast.error("congrats")
 diffrent message for diffrent cases.
 ```
 
-### Installed tailwind.
+- Installing tailwind.
+- Installing daisy ui.
+- npm i -D daisyui@4.12.24
+- under tailwind config
+
+    ```
+      import daisyui from 'daisyui';
+      /** @type {import('tailwindcss').Config} */
+      export default {
+        content: [
+          "./index.html",
+          "./src/**/*.{js,ts,jsx,tsx}",
+        ],
+        theme: {
+          extend: {},
+        },
+        plugins: [daisyui],
+      }
+    ```
+
+### getting daisyui themes
+
+
+    ```
+    import daisyui from 'daisyui';
+      /** @type {import('tailwindcss').Config} */
+      export default {
+        content: [
+          "./index.html",
+          "./src/**/*.{js,ts,jsx,tsx}",
+        ],
+        theme: {
+          extend: {},
+        },
+        plugins: [daisyui],
+        daisyui:{
+          themes:["light","dark","forest"]
+        }
+      }
+    ```

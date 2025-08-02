@@ -694,3 +694,48 @@ export const deleteNotes = async (req, res) => {
 ```
 
 # middleware and rate limiting.
+
+Middleware is a function that runs in the middle between the request and the response.
+
+client -> req <- middleware server
+
+we send request to the server and get response from the server. Just before sending the response we setup up middleware.
+
+ex: 
+
+```
+// settting up middleware. custom simple middleware
+app.use((req, res, next) => {
+  console.log(`request method is ${req.method} and req url is ${req.url}`);
+  next();
+});
+
+this is mainly used for authentication.
+```
+
+ - Rate limiting 
+
+ It is a way of control how often someone can do something on a website or app like how many times they can do something on a website or app like how many times they can refresh a page, make a request to an api or try to log in.
+  ex :
+  only 100 request per user 15 minutes.
+
+  - - Rate limiting merits
+  1. Protecting servers from getting overwhelmed 
+  2. Preventing abuse (stopping someone from making 1000 login attempts in a minute.) 
+
+  status code - 429 : too many request.
+
+  ### upstash setting up
+
+  installing upstash
+  fetting token and url from upstash
+
+--- 
+
+### setting up frontend
+
+- installed vite/react.
+- installed react-router-dom.
+- installed react-hot-toast.
+
+
