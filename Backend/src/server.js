@@ -1,17 +1,20 @@
 import express from "express";
 import notesRoutes from "./routes/notesRoutes.js";
-import { connectDB } from "../config/db.js";
+import { connectDB } from "./config/db.js";
 import dotenv from "dotenv";
+import ratelimit from "./config/upstash.js";
+import rateLimiter from "./middleware/rate_limiter.js";
+// import ratelimiter from "./middleware/rate_limiter.js";
 
 dotenv.config();
 
 const app = express();
 
-connectDB();
+// connectDB();
 
 // middleware
 app.use(express.json()); // to parse JSON data from the request body so we can acess it in req.body in controllers. {title and content}
-
+app.use(rateLimiter);
 // settting up middleware. custom simple middleware
 app.use((req, res, next) => {
   console.log(`request method is ${req.method} and req url is ${req.url}`);
@@ -47,7 +50,9 @@ app.use("/api/notes", notesRoutes);
 
 const PORT = process.env.PORT || 1234;
 
-app.listen(PORT, () => {
-  console.log("listning on PORT : ", PORT);
-  console.log("http://localhost:" + PORT);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("listning on PORT : ", PORT);
+    console.log("http://localhost:" + PORT);
+  });
 });
