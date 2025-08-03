@@ -11,18 +11,20 @@ const HomePage = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const res = await axios.post("http://localhost:5173/api/notes");
-
-        console.log(res.data);
+        const res = await axios.get("http://localhost:1234/api/notes");
+        const data = res.data;
+        console.log(data )
       } catch (err) {
         console.log("Problem in getting the request ", err);
       }
     };
+    // fetchNotes(); 
   }, []);
 
   return (
     <div className="min-h-screen   ">
       <Navbar />
+
       {rate_limit && <RateLimit />}
     </div>
   );
