@@ -55,7 +55,7 @@ export default App;
 
 ```
 
-### setting up Hottoast
+### setting up Hot-toast
 
 importing on main.jsx
 
@@ -133,12 +133,10 @@ diffrent message for diffrent cases.
         }
       }
 
+
+```
 to use theme we can simply write
-
 ```
-
-```
-
 return (
 
   <div data-theme = "forest" > // to use forest theme
@@ -235,3 +233,5 @@ app.use(cors({
 }))
 
 ```
+
+### 
