@@ -4,7 +4,7 @@ import { connectDB } from "./config/db.js";
 import dotenv from "dotenv";
 import ratelimit from "./config/upstash.js";
 import rateLimiter from "./middleware/rate_limiter.js";
-import cors from 'cors'
+import cors from "cors";
 // import ratelimiter from "./middleware/rate_limiter.js";
 
 dotenv.config();
@@ -14,11 +14,14 @@ const app = express();
 // connectDB();
 
 // middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.json()); // to parse JSON data from the request body so we can acess it in req.body in controllers. {title and content}
 app.use(rateLimiter);
-app.use(cors({
-  origin:'http://localhost:5173'
-}))
+
 // settting up middleware. custom simple middleware
 app.use((req, res, next) => {
   console.log(`request method is ${req.method} and req url is ${req.url}`);
