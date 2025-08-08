@@ -4,6 +4,7 @@ import RateLimit from "../components/RateLimit";
 import axios from "axios";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
+import api from "../lb/axios";
 
 const HomePage = () => {
   const [rate_limit, setRate_limit] = useState(false);
@@ -13,7 +14,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const res = await axios.get("http://localhost:1234/api/notes");
+        const res = await api.get("/notes");
         const data = res.data;
         setNotes(data);
         console.log(data);
@@ -32,7 +33,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen   " data-theme="forest" >
+    <div className="min-h-screen   " data-theme="forest">
       <Navbar />
 
       {rate_limit && <RateLimit />}

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, Navigate, useNavigate } from "react-router";
 import axios from "axios";
+import api from "../lb/axios";
 
 const CreatePage = () => {
   const [title, setTitle] = useState("");
@@ -19,11 +20,16 @@ const CreatePage = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:1234/api/notes", { title, content });
+      await api.post("/notes", { title, content });
       toast.success("Note created successfully.");
       navigate("/");
     } catch (err) {
-      toast.error("failed to create note.", err);
+      if (err.response.status === 429) {
+        toast.error("Slow down ! you are creating notes too fast. ", {
+          duration: 4000,
+          icon: "💀",
+        });
+      } else toast.error("failed to create note.");
     } finally {
     }
   };
