@@ -35,7 +35,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 ">
+    <div className="min-h-screen w-full relative ">
       <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]" />
       <div className="container mx-auto px-4 py-8 ">
         <div className="max-w-2xl mx-auto ">
@@ -56,7 +56,7 @@ const CreatePage = () => {
                     name=""
                     id=""
                     placeholder="Note Title"
-                    className="input input-border"
+                    className="input input-border cursor-pointer border-green-400 "
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
@@ -70,7 +70,7 @@ const CreatePage = () => {
                     name=""
                     id=""
                     placeholder="Write your Note here... "
-                    className=" textarea textarea-bordered h-32  "
+                    className=" textarea textarea-bordered h-60 w-full  border-green-400  "
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                   />
