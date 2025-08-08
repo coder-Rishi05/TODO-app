@@ -13,5 +13,6 @@ Backend/
 ├── package.json
 ├── node_modules/
 
-
 ```
+
+A complete frontend and backend mern stack project. 
