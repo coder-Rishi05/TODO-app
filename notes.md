@@ -740,3 +740,8 @@ this is mainly used for authentication.
 
 
 ### 
+
+
+
+### Note detail page.
+
