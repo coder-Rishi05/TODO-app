@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import api from '../lb/axios';
 import toast from 'react-hot-toast';
+import { Loader2Icon } from 'lucide-react';
 
 
 
@@ -30,6 +31,7 @@ const fetchNote = async () => {
     setLoading(false)
   }
 }
+fetchNote()
 
 },[id])
 
@@ -38,8 +40,18 @@ console.log(note)
 
 console.log({id});
 
+if(loading) {
   return (
-    <div>NoteDetailPage</div>
+    <div className='min-h-screen bg-base-200 flex items-center justify-center' >
+      <Loader2Icon className='animate-spin size-10' />
+    </div>
+  )
+}
+
+  return (
+    <div>
+      
+    </div>
   )
 }
 

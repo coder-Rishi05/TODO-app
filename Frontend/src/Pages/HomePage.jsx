@@ -40,7 +40,7 @@ const HomePage = () => {
       <div className="max-w-7xl mx-auto p-4 mt-6 ">
         {loading && (
           <div className="text-center flex items-center justify-center text-primary py-10">
-            <Loader className="size-10 rotate-360  transition-all duration-300 " />
+            <Loader className="animate-spin size-10 " />
           </div>
         )}
 
