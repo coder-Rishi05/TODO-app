@@ -701,7 +701,7 @@ client -> req <- middleware server
 
 we send request to the server and get response from the server. Just before sending the response we setup up middleware.
 
-ex: 
+ex:
 
 ```
 // settting up middleware. custom simple middleware
@@ -713,24 +713,25 @@ app.use((req, res, next) => {
 this is mainly used for authentication.
 ```
 
- - Rate limiting 
+- Rate limiting
 
- It is a way of control how often someone can do something on a website or app like how many times they can do something on a website or app like how many times they can refresh a page, make a request to an api or try to log in.
-  ex :
-  only 100 request per user 15 minutes.
+It is a way of control how often someone can do something on a website or app like how many times they can do something on a website or app like how many times they can refresh a page, make a request to an api or try to log in.
+ex :
+only 100 request per user 15 minutes.
 
-  - - Rate limiting merits
-  1. Protecting servers from getting overwhelmed 
-  2. Preventing abuse (stopping someone from making 1000 login attempts in a minute.) 
+- - Rate limiting merits
 
-  status code - 429 : too many request.
+1. Protecting servers from getting overwhelmed
+2. Preventing abuse (stopping someone from making 1000 login attempts in a minute.)
 
-  ### upstash setting up
+status code - 429 : too many request.
 
-  installing upstash
-  fetting token and url from upstash
+### upstash setting up
 
---- 
+installing upstash
+fetting token and url from upstash
+
+---
 
 ### setting up frontend
 
@@ -738,10 +739,30 @@ this is mainly used for authentication.
 - installed react-router-dom.
 - installed react-hot-toast.
 
-
-### 
-
-
+###
 
 ### Note detail page.
 
+### library for backgrounds.
+
+https://bg.ibelick.com/
+
+
+### Deployment completed
+
+Using render.com
+
+1. creating package.json file. 
+    npm init -y
+
+2. "build":"npm install --prefix backend && npm install --prefix frontend && "
+
+3. it will install dependencies for frontend and backend.
+
+4. "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
+
+5. Command for dist folder to deploy, more optimised version of react.
+
+6. Get rid of cors as we have same url.
+
+7. 
