@@ -33,7 +33,34 @@ const NoteDetailPage = () => {
 
   console.log({ id });
 
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete it !")) return;
+    try {
+      await api.delete(`/notes/${id}`);
+      toast.success("Note deleted.");
+      navigate("/");
+    } catch (err) {
+      console.log("Error deleting the note", err);
+      toast.error("failed to delete note.");
+    }
+  };
+  const handleSave = async () => {
+    if (!note.title.trim() || !note.content.trim()) {
+      toast.error("Please add a title or content");
+      return;
+    }
+    setSaving(true);
+    try {
+      await api.put(`/notes/${id}`, note);
+      toast.success("Notes updated successfully");
+      navigate("/");
+    } catch (error) {
+      console.log("Error saving the note : ", error);
+      toast.error("Failed to update note");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -45,6 +72,7 @@ const NoteDetailPage = () => {
 
   return (
     <div className="min-h-screen  relative h-full w-full ">
+      {/* <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]" /> */}
       <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]" />
 
       <div className="container mx-auto px-4 py-4">
@@ -90,11 +118,21 @@ const NoteDetailPage = () => {
                   }
                 />
               </div>
+              <div className="card-actions justify-end ">
+                <button
+                  onClick={handleSave}
+                  className="btn btn-primary"
+                  disabled={saving}
+                >
+                  {saving ? "Saving..." : "Save changes"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
   );
 };
 
