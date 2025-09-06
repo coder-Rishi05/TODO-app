@@ -9,7 +9,7 @@ export const getAllNotes = async (req, res) => {
     // res.status(200).send("You fetched the notes.");
   } catch (error) {
     console.log("error in getting data controller ", error);
-    res.status(500).json("internal server error", error);
+    res.status(500).json("internal server error");
   }
 };
 
@@ -20,7 +20,7 @@ export async function getNoteById(req, res) {
     res.json(note);
   } catch (err) {
     console.log("error in getting data controller ", err);
-    res.status(500).json("internal server error", err);
+    res.status(500).json("internal server error");
   }
 }
 
