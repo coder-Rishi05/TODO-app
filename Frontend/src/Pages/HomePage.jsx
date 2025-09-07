@@ -18,11 +18,10 @@ const HomePage = () => {
         const res = await api.get("/notes");
         const data = res.data;
         setNotes(data);
-        console.log(data);
+        // console.log(data);
         setRate_limit(false);
       } catch (err) {
         console.log("Problem in getting the request ", err);
-
         if (err.response?.status === 429) setRate_limit(true);
         else toast.error("Failed to load notes");
         setRate_limit(true);
@@ -49,15 +48,7 @@ const HomePage = () => {
         {notes.length > 0 && !rate_limit && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
             {notes.map((note, index) => (
-              <NoteCard data={note} key={note._id} setNotes={setNotes} />
-              // <div key={note._id} >
-
-              //   {note.title} |
-
-              //   {note.content}
-              //   {/* {note.updatedAt}
-              //   {note.createdAt} */}
-              // </div>
+              <NoteCard note={note} key={note._id} setNotes={setNotes} />
             ))}
           </div>
         )}
