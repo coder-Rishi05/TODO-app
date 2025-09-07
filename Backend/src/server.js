@@ -2,7 +2,6 @@ import express from "express";
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
 import dotenv from "dotenv";
-import ratelimit from "./config/upstash.js";
 import rateLimiter from "./middleware/rate_limiter.js";
 import cors from "cors";
 import path from "path";
@@ -19,7 +18,7 @@ const __dirname = path.resolve();
 
 // middleware
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(
     cors({
       origin: "http://localhost:5173",
@@ -28,7 +27,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.use(express.json()); // to parse JSON data from the request body so we can acess it in req.body in controllers. {title and content}
-// app.use(rateLimiter);
+app.use(rateLimiter);
 
 // settting up middleware. custom simple middleware
 app.use((req, res, next) => {
