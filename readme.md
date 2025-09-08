@@ -1,5 +1,16 @@
 ### MERN Stack Todo app
 
+- <h1> Home Page</h1>
+
+   <img src="projectImgs/homepage.png" alt="project home page">
+
+- <h1> new note page</h1>
+
+   <img src="projectImgs/newNote.png" alt="project home page">
+
+- <h1> note update page</h1>
+
+   <img src="projectImgs/noteUpdate.png" alt="project home page">
 
 ### Folder structure
 
@@ -15,9 +26,9 @@ Backend/
 
 ```
 
-A complete frontend and backend mern stack project. 
+A complete frontend and backend mern stack project.
 
-### Backend 
+### Backend
 
 ```
 MONGO_URI=<your_mongo_uri>
@@ -26,6 +37,5 @@ UPSTASH_REDIS_REST_URL=<your_redis_rest_url>
 UPSTASH_REDIS_REST_TOKEN=<your_redis_rest_token>
 
 NODE_ENV=development
+
 ```
-
-
