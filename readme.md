@@ -6,11 +6,15 @@
 
 - <h1> new note page</h1>
 
-   <img src="projectImgs/newNote.png" alt="project home page">
+   <img src="projectImgs/newNote.png" alt="project note page">
 
 - <h1> note update page</h1>
 
-   <img src="projectImgs/noteUpdate.png" alt="project home page">
+   <img src="projectImgs/noteUpdate.png" alt="project update page">
+
+- <h1> Rate limit page</h1>
+
+     <img src="projectImgs/rateLimit.png" alt="project rate limit page">
 
 ### Folder structure
 
