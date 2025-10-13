@@ -54,7 +54,14 @@ app.listen(5001, () => console.log("listning"));
 ```
 - npm run server.js : it will throw error not run on first setup.
 - npm run dev : aslo fail.
-- node .\server.js : also will not run throw erroe for import as it is not module file.
+- node .\server.js : also will not run throw error for import as it is not module file.
+
+basically we have two types of module if we work on backend or frontend.
+1. commonjs
+2. module
+
+the diffrence is like module we can use import and exprot functions.
+in commonjs we need to use require only.
 
 to fix it --
 
@@ -66,6 +73,8 @@ to run on "type":"commonjs",  we need to use require('express');
 to use npm run dev we include dev on package.json
 
  "dev": "node ./server.js"
+
+ or also can use nodemon "./server.js"
 
 ```
 
@@ -89,7 +98,8 @@ it will display the message at : loccalhost:5000/api/notes
 ### How full stack app work
 
 ```
-client send request to the serever. The backend will perform action and send response, which will either fail or sucessfull.
+client send request to the serever. 
+The backend will perform action and send response, which will either fail or sucessfull.
 
 ```
 
@@ -99,13 +109,13 @@ client send request to the serever. The backend will perform action and send res
 
 ```
 It allow 2 diffrent apps to talk to each other.
-
+frontend to backend and backend to frontend.
 
 ```
 
 ---
 
-### Types of API
+### Types of API 
 
 ```
 1. Rest Api :
@@ -159,7 +169,7 @@ app.post('/api/notes/create', (req, res) => {
                 400 : Bad request : invalid request
                 401 : Unauthorised: must log in.
                 403 : Forbidden : not allowd to acess.
-                403 : Not found : the url not exist.
+                404 : Not found : the url not exist.
                 429 : Too many request :
 
     5. 500 : Server error : When something wrong on the server side even client made a valid request.
@@ -192,10 +202,15 @@ to use this install it first then,
 ```
 An endpoint is an combination of URL + HTTP method that lets the client interact with a specific resourse.
 
-
 ```
 
 ---
+
+app.use(express.json())
+
+to parse JSON data from the request body so we can acess it in req.body in controllers. {title and content} basically we get the json data here and then use the key to acess values.
+
+--- 
 
 ### creating routes
 
@@ -211,7 +226,7 @@ An endpoint is an combination of URL + HTTP method that lets the client interact
       console.log(res )
     })
 
-    app.put(route+"/:id",(req,res)=>{
+    app.put(route+"/:id",(req,res)=>{ // here if is parameter for finding specific data.
       res.status(200).json({message:'post updated successfully.'})
     })
     app.delete(route+"/:id",(req,res)=>{
@@ -227,6 +242,7 @@ An endpoint is an combination of URL + HTTP method that lets the client interact
 ### patching the notes.
 
 ```
+
 To patch the routes we  create a new file under routes folder. -> notesRoute.js
 
 notesRoute.js where we will use express.Router() method to create diffrent routes.

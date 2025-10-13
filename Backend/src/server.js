@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-app.use(express.json()); // to parse JSON data from the request body so we can acess it in req.body in controllers. {title and content}
+app.use(express.json()); // to parse JSON data from the request body so we can acess it in req.body in controllers. {title and content} basically we get the json data here and then use the key to acess values. 
 app.use(rateLimiter);
 
 // settting up middleware. custom simple middleware
