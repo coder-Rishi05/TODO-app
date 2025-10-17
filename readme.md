@@ -1,5 +1,7 @@
 ### MERN Stack Todo app
 
+this is my todo full stack website where anyone can read write store and update their notes.
+
 - <h1> Home Page</h1>
 
    <img src="projectImgs/homepage.png" alt="project home page">
