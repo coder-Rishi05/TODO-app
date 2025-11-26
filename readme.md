@@ -1,6 +1,6 @@
 ### MERN Stack Todo app
 
-this is my todo full stack website where anyone can read write store and update their notes.
+this is my todo app a full stack project, where anyone can read, write, store and update their notes.
 
 - <h1> Home Page</h1>
 
