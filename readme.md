@@ -1,6 +1,13 @@
-### MERN Stack Todo app
+# MERN Stack Todo app
 
 this is my todo app a full stack project, where anyone can read, write, store and update their notes.
+
+### app functionality
+
+1. create notes.
+2. update notes.
+3. delete notes.
+4. read notes.
 
 - <h1> Home Page</h1>
 
